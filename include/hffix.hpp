@@ -737,7 +737,7 @@ public:
         memcpy(next_, "9=", 2);
         next_ += 2;
         body_length_ = next_;
-        next_ += 6; // 6 characters reserved for BodyLength.
+        next_ += 5; // 5 characters reserved for BodyLength.
         *next_++ = '\x01';
     }
 
@@ -766,15 +766,15 @@ public:
             throw std::logic_error("hffix message_writer.push_back_trailer called before message_writer.push_back_header");
         }
 
-        size_t const len = next_ - (body_length_ + 7);
-        body_length_[0] = '0' + (len / 100000) % 10;
-        body_length_[1] = '0' + (len / 10000) % 10;
-        body_length_[2] = '0' + (len / 1000) % 10;
-        body_length_[3] = '0' + (len / 100) % 10;
-        body_length_[4] = '0' + (len / 10) % 10;
-        body_length_[5] = '0' + len % 10;
+        size_t const len = next_ - (body_length_ + 6);
+        body_length_[0] = '0' + (len / 10000) % 10;
+        body_length_[1] = '0' + (len / 1000) % 10;
+        body_length_[2] = '0' + (len / 100) % 10;
+        body_length_[3] = '0' + (len / 10) % 10;
+        body_length_[4] = '0' + len % 10;
+        // body_length_[5] = '0' + len % 10;
 
-        if (buffer_end_ - next_ < 7) {
+        if (buffer_end_ - next_ < 6) {
             details::throw_range_error();
         }
 
@@ -1513,7 +1513,7 @@ private:
     char* buffer_;
     char* buffer_end_;
     char* next_;
-    char* body_length_; // Pointer to the location at which the BodyLength should be written, once the length of the message is known. 6 chars, which allows for messagelength up to 999,999.
+    char* body_length_; // Pointer to the location at which the BodyLength should be written, once the length of the message is known. 5 chars, which allows for messagelength up to 999,999.
 };
 
 class message_reader;
