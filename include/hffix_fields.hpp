@@ -345,6 +345,7 @@ A specific date or can be appended to the MaturityMonthYear. For instance, if mu
 PutOrCall                                          = 201, /*!< 201 (int FIX.4.1) Indicates whether an option contract is a put, call, chooser or undetermined.*/
 StrikePrice                                        = 202, /*!< 202 (Price FIX.4.1) Strike Price for an Option.*/
 CoveredOrUncovered                                 = 203, /*!< 203 (int FIX.4.1) Used for derivative products, such as options*/
+MaturityDay                                        = 205,
 OptAttribute                                       = 206, /*!< 206 (char FIX.4.1) Provided to support versioning of option contracts as a result of corporate actions or events. Use of this field is defined by counterparty agreement or market conventions.*/
 SecurityExchange                                   = 207, /*!< 207 (Exchange FIX.4.1) Market used to help identify a security.
 
@@ -3838,6 +3839,11 @@ AveragePriceStartTime                              = 2764, /*!< 2764 (UTCTimesta
 AveragePriceEndTime                                = 2765, /*!< 2765 (UTCTimestamp FIX.5.0SP2) End of the time period during which price averaging occurred.*/
 OrderPercentOfTotalVolume                          = 2766, /*!< 2766 (Percentage FIX.5.0SP2) For Percent-of-volume (POV) average pricing this is the target percentage this order quantity represents of the total trading volume of an instrument during the specified time period. This provides the data needed to ensure that the average price is fair based on the total sum of grouped POV trades. */
 AllocGroupStatus                                   = 2767, /*!< 2767 (int FIX.5.0SP2) Status of the trade give-up relative to the group identified in AllocGroupID(1730).*/
+
+AlgoID                                             = 7110,
+AlgoCategory                                       = 7112,
+NAICCode                                           = 9401,
+
 NoAdditionalTermBondRefs                           = 40000, /*!< 40000 (NumInGroup FIX.5.0SP2) Number of bonds in the repeating group.*/
 AdditionalTermBondSecurityID                       = 40001, /*!< 40001 (String FIX.5.0SP2) Security identifier of the bond.  */
 AdditionalTermBondSecurityIDSource                 = 40002, /*!< 40002 (String FIX.5.0SP2) Identifies the source scheme of the AdditionalTermBondSecurityID(40001) value.  */
@@ -8469,6 +8475,7 @@ dictionary[tag::MinTradeVol]                       = "MinTradeVol";             
 dictionary[tag::MultiLegRptTypeReq]                = "MultiLegRptTypeReq";                              // (int FIX.4.3)
 dictionary[tag::LegPositionEffect]                 = "LegPositionEffect";                               // (char FIX.4.3)
 dictionary[tag::LegCoveredOrUncovered]             = "LegCoveredOrUncovered";                           // (int FIX.4.3)
+dictionary[tag::MaturityDay]                       = "MaturityDay";
 dictionary[tag::LegPrice]                          = "LegPrice";                                        // (Price FIX.4.3)
 dictionary[tag::TradSesStatusRejReason]            = "TradSesStatusRejReason";                          // (int FIX.4.3)
 dictionary[tag::TradeRequestID]                    = "TradeRequestID";                                  // (String FIX.4.3)
@@ -10612,6 +10619,9 @@ dictionary[tag::AveragePriceStartTime]             = "AveragePriceStartTime";   
 dictionary[tag::AveragePriceEndTime]               = "AveragePriceEndTime";                             // (UTCTimestamp FIX.5.0SP2)
 dictionary[tag::OrderPercentOfTotalVolume]         = "OrderPercentOfTotalVolume";                       // (Percentage FIX.5.0SP2)
 dictionary[tag::AllocGroupStatus]                  = "AllocGroupStatus";                                // (int FIX.5.0SP2)
+dictionary[tag::AlgoID]                            = "AlgoID";
+dictionary[tag::AlgoCategory]                      = "AlgoCategory";
+dictionary[tag::NAICCode]                          = "NAICCode";
 dictionary[tag::NoAdditionalTermBondRefs]          = "NoAdditionalTermBondRefs";                        // (NumInGroup FIX.5.0SP2)
 dictionary[tag::AdditionalTermBondSecurityID]      = "AdditionalTermBondSecurityID";                    // (String FIX.5.0SP2)
 dictionary[tag::AdditionalTermBondSecurityIDSource] = "AdditionalTermBondSecurityIDSource";              // (String FIX.5.0SP2)
